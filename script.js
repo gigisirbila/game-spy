@@ -17,6 +17,8 @@ const openModalWindowFunction = function () {
 const closeModalWindowFunction = function () {
   modalWindow.classList.remove("active");
   backDrop.classList.remove("active");
+  playerInputError.classList.remove("shake");
+  playerInputError.textContent = "";
 };
 // error if player number is not between 3-10
 const minPlayer = 3;

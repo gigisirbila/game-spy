@@ -3,29 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Backgammon</title>
+    <title>Spy-Game</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Main section where all functions live 
-     Main section should be in center 
-     -->
-    <section class="main">
-      <div class="main-section">
-        <div class="main--section">
-          <input type="text" class="main-header-section-input" />
-          <button class="main-header-sections-add-btn">Add</button>
-          <button class="main-header-sections-remove-btn">Remove</button>
+    <main>
+      <h1 class="main-screen-title">Spy</h1>
+      <h1 class="main-screen-title">Click to start</h1>
+      <div class="button-container">
+        <button class="start-btn">
+          <img src="assets/game.png" alt="Start" class="button-png" />
+        </button>
+        <div class="backdrop"></div>
+        <div class="modal">
+          <button class="close-btn"">X</button>
+          <div class="popup-header">
+            <div class="popup-title">🎮 Player Setup</div>
+            <div class="popup-subtitle">How many players?</div>
+            <div class="input-error"></div>
+          </div>
+
+          <div class="number-controls">
+            <button class="number-btn number-btn-minus"">-</button>
+            <div class="number-display">4</div>
+            <button class="number-btn number-btn-plus">+</button>
+          </div>
+
+
+          <div class="button-group">
+            <button class="btn-action btn-cancel">
+              Cancel
+            </button>
+            <button class="btn-action btn-confirm">
+              Start Game
+            </button>
+          </div>
         </div>
+        <!-- <button class="btn-player-q"></button> -->
       </div>
-      <!-- check section -->
-      <div class="check-section">
-        <!-- <div class="checkbox-wrapper">
-          <input type="checkbox" id="scales1" name="scales" checked />
-          <label for="scales1">text from input</label>
-        </div> -->
-      </div>
-    </section>
+      <!-- <div class="q-button-container"></div> -->
+    </main>
 
     <script src="script.js"></script>
   </body>

@@ -1,36 +1,49 @@
-"use strict";
+const startBtn = document.querySelector(".start-btn");
+const modalWindow = document.querySelector(".modal");
+const backDrop = document.querySelector(".backdrop");
+const cancelModalWindow = document.querySelector(".btn-cancel");
+const closeModalWindow = document.querySelector(".close-btn");
+const numberBtnMinus = document.querySelector(".number-btn-minus");
+const numberBtnPlus = document.querySelector(".number-btn-plus");
+const playerNumberDisplay = document.querySelector(".number-display");
+const playerInputError = document.querySelector(".input-error");
 
-const inputText = document.querySelector(".main-header-section-input");
-const addButton = document.querySelector(".main-header-sections-add-btn");
-const removeButton = document.querySelector(".main-header-sections-remove-btn");
+// Open modal window
+const openModalWindowFunction = function () {
+  modalWindow.classList.add("active");
+  backDrop.classList.add("active");
+};
+// Close modal window
+const closeModalWindowFunction = function () {
+  modalWindow.classList.remove("active");
+  backDrop.classList.remove("active");
+};
+// error if player number is not between 3-10
+const minPlayer = 3;
+const maxPLayer = 10;
+const invalidPlayerError = function () {
+  playerInputError.classList.add("shake");
+  playerInputError.textContent = "Must be 3–10 players.";
+};
 
-const checkSection = document.querySelector(".check-section");
+startBtn.addEventListener("click", openModalWindowFunction);
+cancelModalWindow.addEventListener("click", closeModalWindowFunction);
+closeModalWindow.addEventListener("click", closeModalWindowFunction);
+// close modal window if clicked anything outside modal window
+backDrop.addEventListener("click", closeModalWindowFunction);
 
-let id = 0;
-// let wraps = [];
-
-const addCheckOnClick = addButton.addEventListener("click", function () {
-  if (inputText.value === "") return;
-  id++;
-  const html = ` 
-  <div class="checkbox-wrapper" id="scales${id}">
-  <input type="checkbox" name="scales" checked />
-  <label for="scales1">${inputText.value}</label>
-  </div>
-    `;
-  checkSection.insertAdjacentHTML("beforeend", html);
-  //   wraps.push(html);
-  //   console.log(wraps);
-  inputText.value = "";
-  //
-  //
+// players must be between 3-10
+numberBtnMinus.addEventListener("click", function () {
+  if (playerNumberDisplay.textContent > minPlayer) {
+    playerNumberDisplay.textContent--;
+  } else {
+    invalidPlayerError();
+  }
 });
-
-removeButton.addEventListener("click", function () {
-  if (inputText === "" && inputText === 0) return;
-  const htmlRemove = document.getElementById(`scales${id}`);
-  if (htmlRemove) {
-    htmlRemove.remove();
-    id--;
+numberBtnPlus.addEventListener("click", function () {
+  if (playerNumberDisplay.textContent < maxPLayer) {
+    playerNumberDisplay.textContent++;
+  } else {
+    invalidPlayerError();
   }
 });

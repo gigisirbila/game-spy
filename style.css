@@ -1,217 +1,301 @@
-:root {
-  --font-text: Inter, ui-sans-serif, system-ui;
-}
+/* Reset some default styles */
+/* @font-face {
+  font-family: "geo";
+  src: url("fonts/Georgian_font-bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+} */
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
 }
 
-/* Center container */
-.main {
+:root {
+  --font-text: sans-serif;
+}
+body {
+  font-family: var(--font-text);
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, #000000, #330000, #8b0000, #ff0000);
+  color: #ffffff;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: linear-gradient(180deg, #e0e5ec 0%, #f8f9fa 100%);
-  font-family: "Inter", sans-serif;
 }
 
-/* Light iOS-style panel */
-.main--section {
-  background: rgba(157, 33, 99, 0.67);
-  backdrop-filter: blur(16px) saturate(180%); /* iOS blur + saturation */
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-
-  width: 40rem;
-  height: 8rem;
+.main-screen-title {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  /* align-items: center; */
+  justify-content: center;
 
-  border-radius: 20px;
-  border: 1px solid rgba(65, 61, 61, 0.085); /* soft white border */
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); /* subtle shadow */
-  padding: 2rem;
-  color: #1c1c1e; /* dark text for contrast */
-}
-/* input */
-.main-header-section-input {
-  margin: 0.5rem 2rem;
-  width: 10rem;
-  height: 2rem;
-  padding: 12px 16px;
-
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-
-  background: rgba(255, 255, 255, 0.552);
-  backdrop-filter: blur(12px) saturate(150%);
-  -webkit-backdrop-filter: blur(12px) saturate(150%);
-  font-size: 15px;
-  color: #fff;
-
-  outline: none;
-  transition: 0.7s ease-in;
-}
-.main-header-section-input.default-text {
-  color: rgba(255, 255, 255, 0.55);
-}
-
-.main-header-section-input::placeholder {
-  /* color: #aaa; */
-  color: rgba(255, 255, 255, 0.55);
-}
-.main-header-section-input:focus {
-  border-color: rgba(255, 255, 255, 0.35);
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
-}
-/* .main-header-section-input:hover {
-    background: rgba(255, 114, 114, 0.179);
-    } */
-.main-header-section-input {
-  height: 2.6rem;
-  padding: 0 16px;
-  line-height: 2.6rem;
-}
-
-/* add-button */
-.main-header-sections-add-btn {
-  margin: 0.5rem 2rem;
-  width: 5rem;
-  height: 2.5rem;
   font-family: var(--font-text);
-
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 14px;
-
-  background: rgba(255, 255, 255, 0.484);
-  backdrop-filter: blur(12px) saturate(160%);
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
-
-  color: #fff;
-  font-weight: 500;
-  font-size: 14px;
-
-  cursor: pointer;
-  transition: 0.25s ease;
+  font-size: 3rem;
+  margin-bottom: 50px;
+  text-shadow: 2px 2px #00000055;
 }
 
-.main-header-sections-add-btn:hover {
-  background: rgba(255, 255, 255, 0.22);
-}
-
-.main-header-sections-add-btn:active {
-  scale: 0.96;
-  background: rgba(255, 255, 255, 0.28);
-}
-
-/* Remove-button */
-
-.main-header-sections-remove-btn {
-  margin: 0.5rem 2rem;
-  width: 5rem;
-  height: 2.5rem;
-  font-family: var(--font-text);
-
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 14px;
-
-  background: rgba(255, 255, 255, 0.484);
-  backdrop-filter: blur(12px) saturate(160%);
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
-
-  color: #fff;
-  font-weight: 500;
-  font-size: 14px;
-
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-.main-header-sections-remove-btn:hover {
-  background: rgba(255, 255, 255, 0.22);
-}
-
-.main-header-sections-remove-btn:active {
-  scale: 0.96;
-  background: rgba(255, 255, 255, 0.28);
-}
-
-/* Check section */
-.check-section {
+.button-container {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: start;
-  gap: 2rem; /* space between checkboxes */
-
-  background: rgba(195, 101, 170, 0.53);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-
-  width: 40rem;
-  height: auto;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  padding: 2rem;
-  color: #ffffff;
-}
-
-/* Wrapper for individual checkbox + label */
-.checkbox-wrapper {
-  display: flex;
-  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  gap: 0.5rem; /* space between checkbox and label */
-  font-size: 1rem;
-  cursor: pointer;
-  /* opacity: 0; */
+  gap: 3rem;
 }
-
-/* Optional: make checkboxes iOS style */
-.checkbox-wrapper input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  accent-color: #4fa1ff; /* iOS blue */
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-/* textbox checkArea */
-.checkbox-checkarea {
-  width: 100%; /* full width of container */
-  padding: 12px 16px;
-
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-
-  background: rgba(255, 255, 255, 0.3); /* translucent glass */
-  backdrop-filter: blur(12px) saturate(150%);
-  -webkit-backdrop-filter: blur(12px) saturate(150%);
-
-  font-size: 15px;
-  color: #1c1c1e; /* dark text for readability */
+.start-btn {
   font-family: var(--font-text);
-  resize: vertical; /* allow vertical resizing only */
+  /* padding: 20px 50px; */
+  height: 6rem;
+  width: 6rem;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
 
-  outline: none;
-  transition: 0.3s ease;
+  /* subtle gradient for depth */
+  background: linear-gradient(145deg, #c5081b, #e10206);
+  color: #fff;
+
+  /* modern subtle shadow */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4), 0 0 8px #c5081b;
+
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Focus effect */
-.checkbox-checkarea:focus {
-  border-color: rgba(79, 161, 255, 0.8); /* iOS blue focus */
-  box-shadow: 0 0 12px rgba(79, 161, 255, 0.25);
-  background: rgba(255, 255, 255, 0.45);
+.start-btn:hover {
+  background: linear-gradient(
+    145deg,
+    #e10206,
+    #ff1a1a
+  ); /* slightly brighter gradient */
+  transform: scale(1.1);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5), 0 0 12px #ff1a1a;
 }
 
-/* Placeholder text */
-.checkbox-checkarea::placeholder {
-  color: rgba(28, 28, 30, 0.5);
-  font-style: italic;
+.start-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), 0 0 6px #b60202;
+}
+.button-png {
+  margin-top: 5px;
+  width: 3rem;
+  height: 3rem;
+}
+.backdrop {
+  display: none; /* show only when active */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+.backdrop.active {
+  display: block;
+}
+/* b Popup */
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background: linear-gradient(145deg, #1a0000, #330000);
+  padding: 40px;
+  border-radius: 20px;
+  border: 2px solid #c5081b;
+  box-shadow: 0 20px 60px rgba(197, 8, 27, 0.4), 0 0 30px rgba(197, 8, 27, 0.3);
+  z-index: 1000;
+  min-width: 320px;
+  animation: modalAppear 0.3s ease forwards;
+}
+
+.modal.active {
+  display: block;
+}
+
+.popup-header {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.popup-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+  text-shadow: 0 0 10px #c5081b;
+}
+
+.popup-subtitle {
+  font-size: 14px;
+  color: #cccccc;
+}
+.input-error {
+  min-height: 1.25em;
+  margin-top: 14px;
+  color: #ff6b6b;
+  font-size: 0.95rem;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+.input-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-action {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cancel {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-confirm {
+  background: linear-gradient(145deg, #c5081b, #e10206);
+  color: white;
+  box-shadow: 0 4px 8px rgba(197, 8, 27, 0.4);
+}
+
+.btn-confirm:hover {
+  background: linear-gradient(145deg, #e10206, #ff1a1a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(197, 8, 27, 0.6);
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: rgba(197, 8, 27, 0.5);
+  transform: rotate(90deg);
+}
+
+/* Number controls */
+.number-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.number-btn {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #c5081b;
+  border-radius: 50%;
+  background: rgba(197, 8, 27, 0.2);
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.number-btn:hover {
+  background: rgba(197, 8, 27, 0.4);
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(197, 8, 27, 0.5);
+}
+
+.number-btn:active {
+  transform: scale(0.95);
+}
+
+.number-display {
+  font-size: 48px;
+  font-weight: bold;
+  color: #ff1a1a;
+  text-shadow: 0 0 20px #c5081b;
+  min-width: 80px;
+  text-align: center;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes tinyShake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.input-error.shake {
+  animation: tinyShake 0.25s ease;
 }

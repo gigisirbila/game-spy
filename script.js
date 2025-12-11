@@ -100,26 +100,41 @@ const startGameFunction = function () {
   startingPageWrapper.style.display = "none";
   mainGameWrapper.style.display = "block";
 
-  let hidden = false;
-  // while (currentIndex < playerNumber) {
   let currentIndex = 0;
+  let hidden = false;
+  // spy random number
+  let spy = Math.floor(Math.random() * playerNumber + 1);
+  console.log("spy is player number", spy);
+
+  // card tap function
   card.addEventListener("click", function () {
     currentIndex++;
-    console.log(currentIndex);
     hidden = !hidden;
-    if (currentIndex / 2 < playerNumber) {
-      if (hidden) {
+    console.log(currentIndex);
+    console.log(playerNumber);
+    let playable = currentIndex / 2 < playerNumber;
+    if (currentIndex > playerNumber * 2 - 1) {
+      label.style.display = "none";
+      mainWord.style.display = "none";
+      tapText.textContent = "Start a game";
+    }
+    // console.log(currentIndex);
+
+    let isSpy = spy === currentIndex / 2;
+    if (playable) {
+      if (isSpy) {
         label.style.display = "none";
         mainWord.style.display = "none";
-        tapText.textContent = "tap to appear";
-      } else {
+        tapText.textContent = "spy";
+      } else if (hidden === false) {
         label.style.display = "block";
         mainWord.style.display = "block";
         tapText.textContent = "tap to hide";
+      } else {
+        label.style.display = "none";
+        mainWord.style.display = "none";
+        tapText.textContent = "tap to appear";
       }
-    } else {
-      // add new card with timer
-      alert("no more player");
     }
   });
 };

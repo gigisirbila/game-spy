@@ -83,12 +83,17 @@ numberBtnPlus.addEventListener("click", function () {
 
 // starting main game page
 const startGameFunction = function () {
+  mainGameWrapper.innerHTML = "";
+  // start game and dissapear lobby/starting page
+  startingPageWrapper.style.display = "none";
+  mainGameWrapper.style.display = "block";
+
   const randomWord = words[Math.floor(Math.random() * words.length)];
   let html = `   
   <div class="spy-card">
-    <p class="label">word:</p>
-    <p class="main-word">${randomWord}</p>
-    <p class="tap">tap to hide</p>
+  <p class="label">tap to start game</p>
+    <p class="main-word"></p>
+    <p class="tap"></p>
     </div>`;
   mainGameWrapper.insertAdjacentHTML("beforeend", html);
 
@@ -97,45 +102,86 @@ const startGameFunction = function () {
   const mainWord = document.querySelector(".main-word");
   const tapText = document.querySelector(".tap");
 
-  startingPageWrapper.style.display = "none";
-  mainGameWrapper.style.display = "block";
+  let spyNumber = Math.floor(Math.random() * playerNumber + 1);
+  console.log("spy is ", spyNumber);
+  let state = 0;
+  let currentPlayer = 1;
 
-  let currentIndex = 0;
-  let hidden = false;
-  // spy random number
-  let spy = Math.floor(Math.random() * playerNumber + 1);
-  console.log("spy is player number", spy);
+  let finishGameTap = 0;
 
-  // card tap function
+  console.log("current state is", state);
+
   card.addEventListener("click", function () {
-    currentIndex++;
-    hidden = !hidden;
-    console.log(currentIndex);
-    console.log(playerNumber);
-    let playable = currentIndex / 2 < playerNumber;
-    if (currentIndex > playerNumber * 2 - 1) {
+    if (!gameRunning) return;
+
+    console.log("current player click", currentPlayer);
+
+    if (currentPlayer > playerNumber) {
+      // mainWord.style.display = "none";
+      // label.style.display = "none";
+      // mainWord.textContent = "zero";
+
+      finishGameTap++;
+      console.log("finish game if you tap screen 3 times ", finishGameTap);
+      if (finishGameTap === 3) {
+        startingPageWrapper.style.display = "block";
+        mainGameWrapper.style.display = "none";
+        gameRunning = false;
+        finishGameTap = 0;
+        currentPlayer = 1;
+        state = 0;
+        mainGameWrapper.innerHTML = "";
+        // close modal window and resetting everything
+        modalWindow.classList.remove("active");
+        backDrop.classList.remove("active");
+        playerInputError.classList.remove("shake");
+        playerInputError.textContent = "";
+      }
+      return;
+    }
+
+    // Reveal
+    if (state === 0) {
+      label.style.display = "block";
+      mainWord.style.display = "block";
+      tapText.style.display = "block";
+      // label.textContent = "Word:";
+      // mainWord.textContent = randomWord;
+      if (currentPlayer === spyNumber) {
+        label.style.display = "none";
+        mainWord.style.display = "block";
+        mainWord.textContent = "spy";
+      } else {
+        label.textContent = "Word:";
+        mainWord.textContent = randomWord;
+      }
+      tapText.textContent = "Tap to hide";
+      state = 1;
+      return;
+    }
+    // hide
+    if (state === 1) {
       label.style.display = "none";
       mainWord.style.display = "none";
-      tapText.textContent = "Start a game";
-    }
-    // console.log(currentIndex);
-
-    let isSpy = spy === currentIndex / 2;
-    if (playable) {
-      if (isSpy) {
-        label.style.display = "none";
+      currentPlayer++;
+      state = 0;
+      if (currentPlayer > playerNumber) {
         mainWord.style.display = "none";
-        tapText.textContent = "spy";
-      } else if (hidden === false) {
-        label.style.display = "block";
-        mainWord.style.display = "block";
-        tapText.textContent = "tap to hide";
-      } else {
-        label.style.display = "none";
-        mainWord.style.display = "none";
-        tapText.textContent = "tap to appear";
+        // mainWord.textContent = "Game finished!";
+        tapText.textContent = "Tap 3 times to return to lobby";
+        return;
       }
+      tapText.textContent = "Tap to Reveal";
     }
   });
+
+  // console.log(finishGameTap);
 };
-startGame.addEventListener("click", startGameFunction);
+let gameRunning = false;
+startGame.addEventListener("click", function () {
+  if (gameRunning) return;
+  gameRunning = true;
+  startGameFunction();
+});
+
+// finish game and go back to lobby/starting page
